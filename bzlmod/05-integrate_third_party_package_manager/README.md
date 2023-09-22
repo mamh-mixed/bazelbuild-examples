@@ -15,9 +15,8 @@ It covers the following topics:
 To test it out, `cd` into this directory and run the following:
 
 ```bash
-export USE_BAZEL_VERSION=last_green
-bazelisk build --enable_bzlmod //:check_books
-cat ./bazel-bin/books
+bazel build check_books
+cat $(bazel 2>/dev/null cquery --output=files check_books)
 ```
 
 The newest editions of all required books should be fetched, expected output:
